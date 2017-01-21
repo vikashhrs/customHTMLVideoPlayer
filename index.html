@@ -5,6 +5,7 @@
     <title>VideoPlayer</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/darkly.css">
+    <link rel="stylesheet" href="css/video-player.css"/>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -12,25 +13,31 @@
     <link>
 </head>
 <body ng-controller="VideoController">
-    <div class="container">
-        <h1>CustomizedVideoPlayer</h1>
+<div class="container">
+    <h1>CustomizedVideoPlayer</h1>
+    <div id="fullPlayer" class="unselectable ng-cloak">
         <div class="embed-responsive embed-responsive-16by9">
-            <video id="VideoElement" width="100%" height="100%" src="{{videoSource}}"></video>
+            <video id="VideoElement" ng-click="togglePlay()" width="100%" height="100%" src="{{videoSource}}"></video>
+            <div id="bigPlayButton" ng-click="togglePlay()" ng-hide="videoPlaying" class="well"><span
+                    class="glyphicon glyphicon-play"></span></div>
+            <div id="videoTitle" ng-hide="videoPlaying">{{titleDisplay}}</div>
         </div>
-
-        <div>
-            <h1>{{titleDisplay}}</h1>
-            <h1>{{videoDescription}}</h1>
-
+        <div id="playerToolBar">
+            <a id="playBtn" ng-click="togglePlay()" class="btn btn-default"><span class="glyphicon glyphicon-play"></span></a>
+            <a id="muteBtn" ng-click="toggleMute()" class="btn btn-default"><span class="glyphicon glyphicon-volume-up"></span></a>
+            <span id="videoTime">{{currentTime}}/ {{totalTime}}</span>
         </div>
     </div>
-    <script>
 
-        var videoSource = "video/StarlightScamper.mp4";
-        var titleDisplay = "Starlight Scamper";
-        var videoDescription = "Starlight Scamper: a project built for the Lynda.com course 'HTML5 Canvas and WebGL in Flash Professional CC'.";
 
-    </script>
+</div>
+<script>
+
+    var videoSource = "video/StarlightScamper.mp4";
+    var titleDisplay = "Starlight Scamper";
+    var videoDescription = "Starlight Scamper: a project built for the Lynda.com course 'HTML5 Canvas and WebGL in Flash Professional CC'.";
+
+</script>
 
 </body>
 </html>
